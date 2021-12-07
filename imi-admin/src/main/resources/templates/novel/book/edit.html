@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('修改书籍列表')"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-book-edit" th:object="${book}">
+        <input name="id" th:field="*{id}" type="hidden">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">书籍名称
+                ：</label>
+            <div class="col-sm-8">
+                <input name="articleName" th:field="*{articleName}" class="form-control"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">书籍图标地址
+                ：</label>
+            <div class="col-sm-8">
+                <input name="urlImg" th:field="*{urlImg}" class="form-control"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">书籍相对路径
+                ：</label>
+            <div class="col-sm-8">
+                <input name="urlList" th:field="*{urlList}" class="form-control"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">书籍作者
+                ：</label>
+            <div class="col-sm-8">
+                <input name="author" th:field="*{author}" class="form-control"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">书籍简介
+                ：</label>
+            <div class="col-sm-8">
+                <input name="intro" th:field="*{intro}" class="form-control"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">书籍原id
+                ：</label>
+            <div class="col-sm-8">
+                <input name="bookId" th:field="*{bookId}" class="form-control"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">书籍类别
+                ：</label>
+            <div class="col-sm-8">
+                <input name="sortId" th:field="*{sortId}" class="form-control"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">章节id
+                ：</label>
+            <div class="col-sm-8">
+                <input name="chapterId" th:field="*{chapterId}" class="form-control"
+                       type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var prefix = ctx + "novel/book";
+    $("#form-book-edit").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-book-edit').serialize());
+        }
+    }
+</script>
+</body>
+</html>
